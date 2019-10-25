@@ -274,6 +274,7 @@ export default {
       this.attributesChanged(products.data.attributes);
       
       this.$nuxt.$loading.finish();
+      window.scrollTo(0, 0);
     },
     attributesChanged(atts) {
       // Keep selected values
