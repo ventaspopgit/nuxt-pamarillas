@@ -1,0 +1,302 @@
+.precio {
+	
+	.descuento {
+		color: #FFF;
+		background-color: var(--primary);
+		font-size: 1.2em;
+		font-weight: bold;
+		display: inline-block;
+		padding: 0.7em 1em;
+		border-radius: 0 1em 1em 0;
+		vertical-align: middle;
+	}
+	
+	.pvp {
+		font-size: 3em;
+		font-weight: bold;
+		margin: 0 0.5em 0 0;
+		vertical-align: middle;
+		color: var(--primary);
+	}
+	
+	s {
+		font-size: 3em;
+		color: var(--gray);
+		vertical-align: middle;
+	}
+	
+}
+
+#producto {
+	padding-top: 5em;
+	font-size: 0.6em;
+	
+	.row {
+		align-items: flex-start;
+	}
+	
+	#fotos {
+		position: relative;
+		
+		img {
+			width: 100%;
+		}
+		
+		.principal {
+			border-radius: 2em;
+			background-color: var(--light);
+		}
+		
+    #zoom {
+      background-position: 50% 50%;
+      background-size: 150% auto;
+      position: relative;
+      overflow: hidden;
+      cursor: zoom-in;
+      padding-bottom: 100%;
+
+      img:hover {
+        opacity: 0;
+      }
+      
+      img {
+        transition: opacity .5s;
+        display: block;
+        width: 100%;
+        position: absolute;
+      }
+    }  		
+		
+		ul {
+			position: absolute;
+			display: flex;
+			bottom: 3em;
+			left: 3.75em;
+			
+			li {
+				width: 4.9em;
+				height: 4.9em;
+				border-radius: 1em;
+				border: 2px solid #FFF;
+				margin-right: 1em;
+				overflow: hidden;
+				box-sizing: border-box;
+			}
+		}
+	}
+	
+	&.agotado {
+  	#fotos {
+    	opacity: 0.5;
+    	
+    	#zoom {
+      	cursor: default;
+      	
+      	img:hover {
+        	opacity: 1;
+      	}
+    	}
+    }
+  	
+  	.precio {
+    	.pvp {
+      	color: var(--dark);
+    	}
+    	.descuento {
+      	background-color: var(--dark);
+    	}
+  	}
+	}
+	
+	#info {
+	
+		h1 {
+			font-weight: bold;
+			margin: 0.25em 0;
+		}
+		
+		h2 {
+  		font-size: 3em;
+			font-weight: bold;
+			color: var(--gray);
+		}
+		
+		p {
+			font-size: 1.8em;
+			line-height: 1.5em;
+			
+			&.envio, &.ultimas {
+				color: var(--primary);
+			}
+			
+		}
+		
+		.alertas {
+			margin: 2em 0;
+			p {
+				margin: 0.2em 0;
+			}
+		}
+		
+		.descripcion {
+			margin: 3em 0 6em 0;
+			
+			a {
+  			color: var(--primary);
+			}
+		}
+		
+	}
+		
+	#buy {
+		
+		select {
+  		width: auto;
+  		display: inline-block;
+  		margin-right: 0.5em;
+  		width: 5em;
+		}
+		
+		.btn_1 {
+			display: block;
+			margin-top: 1em;
+			width: 100%;
+			border: 0 none;
+			font-size: 1.5em;
+			
+			&[disabled] {
+  			background-color: #333;
+  			cursor: default;
+  			color: #FFF;
+			}
+		}
+	}
+	
+	.social {
+		border-top: 1px solid var(--gray);
+		margin-top: 2em;
+		padding-top: 2em;
+		
+		p {
+			font-size: 1.4em;
+			
+			a {
+				display: inline-block;
+				margin-left: 0.5em;
+			}
+			
+			@media (max-width: 400px) {
+				text-align: right;
+				span {
+					display: none;
+				}
+			}
+		}
+	}
+	
+	.tabs {
+		margin: 5em 0;
+		
+		h2 {
+			color: var(--dark);
+		}
+		
+		p, .tabContent {
+			font-size: 1.8em;
+			line-height: 1.5em;
+		}
+		
+	 .tabContent p {
+  	 font-size: 1em;
+	 }
+
+		ul {
+			margin: 2em 0;
+			
+			li {
+				display: inline-block;
+				vertical-align: middle;
+				font-size: 1.8em;
+				font-weight: bold;
+				margin-right: 1em;
+				padding: 0.75em 1em;
+				border-radius: 2em;
+				cursor: pointer;
+				
+				&:hover, &.active {
+					background-color: #ffc107;
+					color: #FFF !important;
+				}
+			}
+		}
+		
+	}
+	
+	.relacionados {
+		
+		h2 {
+			margin-bottom: 1.5em;
+
+			@media (min-width: 721px) {
+				text-align: center;
+			}
+			
+			+ p {
+  			text-align: center;
+  			font-weight: normal;
+  			color: var(--gray);
+  			max-width: 24em;
+  			margin: -1.5em auto 2em auto;
+  			line-height: 1.5em;
+			}
+		}
+		
+		+ .relacionados {
+  		margin-top: 10em;
+		}
+		
+	}
+		
+	.feats {
+		border-top: 1px solid var(--gray);
+		padding-top: 5em;
+		margin-top: 2em;
+		
+		@media (max-width: 770px) {
+			display: flex;
+			flex-wrap: wrap;
+			padding-top: 2em;
+			margin-bottom: 2em;
+			
+			li {
+				width: 50%;
+				margin: 1em 0;
+				text-align: center;
+				display: block;
+				
+				&:before {
+					display: block;
+					margin: 0 auto 1em auto;
+				}
+			}
+		}
+	}
+	
+	@media (max-width: 930px) {
+		.row {
+			display: block;
+		}
+		
+		.col-6 {
+			width: 100%;
+			flex: none;
+			max-width: none;
+			margin-bottom: 2em;
+		}
+		
+		#fotos ul {
+			display: none;
+		}
+	}
+	
+}

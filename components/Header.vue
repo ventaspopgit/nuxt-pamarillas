@@ -1,0 +1,88 @@
+<template>
+  <header class="header_in">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-12">
+          <div id="logo">
+            <router-link to="/">
+              <img src="~assets/img/logo_sticky.svg" width="165" height="35" alt="" class="logo_sticky">
+            </router-link>
+          </div>
+        </div>
+        <div class="col-lg-9 col-12">
+          <!-- /top_menu -->
+          <a href="#menu" class="btn_mobile">
+            <div id="hamburger" class="hamburger hamburger--spin">
+              <div class="hamburger-box">
+                <div class="hamburger-inner" />
+              </div>
+            </div>
+          </a>
+          <nav id="menu" class="main-menu">
+            <ul>
+              <li v-for="(cat, index) in categories" :key="index">
+                <span><router-link :to="cat.url">{{ cat.name }}</router-link></span>
+              </li>
+              <li v-if="user.logged">
+                <span><router-link to="/micuenta">Hola {{ user.name() }}</router-link></span>
+                <ul>
+                  <li><span><router-link to="/favoritos">Favoritos</router-link></span></li>
+                  <li><span><router-link to="/logout">Cerrar sesión</router-link></span></li>
+                </ul>
+              </li>
+              <li v-if="!user.logged"><span><router-link to="/login">Login</router-link></span></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </header>
+</template>
+
+<script>
+import User from '~/components/gigantier/User';
+import Cart from '~/components/Cart';
+
+export default {
+  name: 'Header',
+  props: {
+    shop: {
+      type: Object,
+      required: true
+    },
+    categories: {
+      type: Array,
+      required: true
+    }
+  },
+  data: () => ({
+    user: null,
+    query: null,
+    timeout: null,
+    buscadorAbierto: false,
+    sugerenciasAbiertas: false,
+    sugerencias: [],
+    marcas: []
+  }),
+  computed: {
+    cartProducts() {
+      return Cart.state.products;
+    },
+    cartQuantity() {
+      return Cart.getters.quantity;
+    },
+    cartTotal() {
+      return Cart.getters.total;
+    },
+    userName() {
+      return (this.user ? this.user.name() : null);
+    }
+  },
+  created() {
+    this.user = User;
+    this.user.init();
+  }
+};
+</script>
