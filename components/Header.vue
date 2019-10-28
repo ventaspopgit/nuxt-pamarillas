@@ -5,7 +5,7 @@
         <div class="col-lg-3 col-12">
           <div id="logo">
             <router-link to="/">
-              <img src="~assets/img/logo_sticky.svg" width="165" height="35" alt="" class="logo_sticky">
+              <img src="~assets/img/buscoshop.jpg" height="50" alt="" class="logo_sticky">
             </router-link>
           </div>
         </div>
