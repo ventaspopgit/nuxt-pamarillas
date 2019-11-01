@@ -14,7 +14,17 @@
 @import '~/assets/css/style.css';
 @import '~/assets/css/vendors.css';
 @import '~/assets/css/custom.css';
-@import '~/assets/css/product.scss';
+
+:root {
+  --red: #ef2d4a;
+  --dark-grey: #313f48;
+  --grey: #cecece;
+  --light-grey: #f2f3f5;
+  --yellow: #fec745;
+}
+
+@import '~/assets/css/_product.scss';
+@import '~/assets/css/_carrito.scss';
 </style>
 
 <script>

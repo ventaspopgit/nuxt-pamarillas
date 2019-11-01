@@ -5,7 +5,7 @@
 	padding: 10px 0;
 }
 
-.label {
+span.label {
 	border: 1px solid #CCC;
 	background-color: #FFF;
 	padding: 2px 5px;
@@ -16,7 +16,7 @@
 	position: relative;
 }
 
-.label:after {
+span.label:after {
 	content: "x";
 	margin-left: 5px;
 	color: #CCC;
@@ -68,4 +68,17 @@ a.tel {
 	
 .singlepost {
 	padding: 30px;
+}
+
+.strip figure {
+  height: auto;
+}
+
+.strip figure a img {
+  position: static;
+  transform: none;
+}
+
+.strip figure a:hover img {
+  transform: scale(1.1);
 }

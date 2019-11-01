@@ -28,8 +28,8 @@ export default {
     return Repository.post(`${resource}`, data);
   },
   
-  async getOrder(data) {
-    const order = await Repository.post(`${resource}/${data.id}`, data);
+  async getOrder(id) {
+    const order = await Repository.post(`${resource}/${id}`);
     order.data.statusId = parseInt(order.data.statusId);
     order.data.paymentMethodId = parseInt(order.data.paymentMethodId);
     return order;

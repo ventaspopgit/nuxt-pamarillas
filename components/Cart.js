@@ -103,6 +103,11 @@ const Cart = new Vuex.Store({
         this.commit('remove', existing);
       }
       
+      let stock = (version.id ? version.stock : payload.product.stock);
+      if (payload.product.maxQuantity && payload.product.maxQuantity < stock) {
+        stock = payload.product.maxQuantity;
+      }
+      
       this.state.products.push({
         productId: payload.product.id,
         versionId: payload.versionId,
@@ -112,7 +117,7 @@ const Cart = new Vuex.Store({
         discount: payload.product.discount,
         originalPrice: (version.id ? version.originalPrice : payload.product.originalPrice),
         price: (version.id ? version.price : payload.product.price),
-        stock: Math.min((version.id ? version.stock : payload.product.stock), payload.product.maxQuantity),
+        stock: stock,
         image: payload.product.image,
         attributes: attributes,
         deliveryFrom: (payload.product.campaigns.length ? payload.product.campaigns[0].deliveryFrom : null),

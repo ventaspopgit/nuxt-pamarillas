@@ -400,8 +400,14 @@ app.post('/Order/calculateTotal', function(req, res) {
   if(req.body.discounts) {
     req.body.discounts = JSON.stringify(req.body.discounts);
   }
-  
-  apiClient.authenticatedCall('/Order/calculateTotal', { body: req.body }).then((data) => {
+
+  if(req.body.access_token) {
+    call = apiClient.authenticatedCall('/Order/calculateTotal', { body: req.body });
+  } else {
+    call = apiClient.call('/Order/calculateTotal', { body: req.body });
+  }
+
+  call.then((data) => {
     res.json(data);
   }).catch((data) => {
     res.status(400).json(data);
@@ -417,8 +423,19 @@ app.post('/Order/list', function(req, res) {
 });
 
 app.post('/Order/:orderId', function(req, res) {
-  apiClient.authenticatedCall('/Order/list/'+req.params.orderId, { body: req.body }).then((data) => {
-    res.json(data);
+  apiClient.call('/Order/list/'+req.params.orderId).then((data) => {
+    // don't expose customer data
+    res.json({
+      id: data.id,
+      products: data.products,
+      carrier: data.carrier,
+      paymentMethod: data.paymentMethod,
+      status: data.status,
+      subtotal: data.subtotal,
+      discount: data.discount,
+      shipping: data.shipping,
+      total: data.total
+    });
   }).catch((data) => {
     res.status(400).json(data);
   });
