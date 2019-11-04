@@ -6,7 +6,6 @@
         <figure>
           <router-link v-if="product.image" :to="product.url" event="" @click.native.prevent="visit(product, index)">
             <img :src="product.image" class="img-fluid" alt="">
-            <div class="read_more"><span>Leer más</span></div>
           </router-link>
         </figure>
         <div class="wrapper">
