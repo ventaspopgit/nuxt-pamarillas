@@ -4,6 +4,7 @@
     <div v-for="(product, index) in products" v-if="type === 0" :key="index" :data-id="product.id" itemscope itemtype="http://schema.org/Product" :data-manufacturer="product.manufacturer" :class="{ 'col-md-6': (size === 'large'), 'col-md-4': (size === 'small') }">
       <div class="strip grid">
         <figure>
+          <p v-if="product.discount" class="discount">-{{ product.discount }}%</p>
           <router-link v-if="product.image" :to="product.url" event="" @click.native.prevent="visit(product, index)">
             <img :src="product.image" class="img-fluid" alt="">
           </router-link>
@@ -18,15 +19,15 @@
     <!-- LIST -->
     <div v-for="(product, index) in products" v-if="type === 1" :key="index" data-id="product.id" itemscope itemtype="http://schema.org/Product" :data-manufacturer="product.manufacturer" class="strip list_view">
       <div class="row no-gutters">
-        <div class="col-lg-5">
+        <div class="col" style="flex-shrink:1;flex-grow:0">
           <figure>
+            <p v-if="product.discount" class="discount">-{{ product.discount }}%</p>
             <router-link v-if="product.image" :to="product.url" event="" @click.native.prevent="visit(product, index)">
               <img :src="product.image" class="img-fluid" alt="">
-              <div class="read_more"><span>Leer más</span></div>
             </router-link>
           </figure>
         </div>
-        <div class="col-lg-7">
+        <div class="col">
           <div class="wrapper">
             <h3><router-link :to="product.url" event="" @click.native.prevent="visit(product, index)">{{ product.name }}</router-link></h3>
             <small>{{ product.code }}</small>

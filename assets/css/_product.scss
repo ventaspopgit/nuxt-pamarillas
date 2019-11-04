@@ -27,6 +27,22 @@
 	
 }
 
+.strip figure {
+  overflow: hidden;
+  .discount {
+    background-color: #004dda;
+    color: #FFF;
+    transform: rotate(45deg);
+    font-weight: bold;
+    text-align: center;
+    right: -5em;
+    position: absolute;
+    width: 16em;
+    top: 2em;
+    z-index: 99999;
+  }  
+}
+
 #producto {
 	padding-top: 5em;
 	font-size: 0.6em;

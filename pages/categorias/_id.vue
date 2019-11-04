@@ -59,7 +59,7 @@
         <div class="col-lg-9">
           <p v-if="products.length === 0">No se encontraron resultados.</p>
           
-          <ProductList :products="products" :type="type" :list-name="'Categoría ' + category.name" />
+          <ProductList :products="products" :type="type" :list-name="'Categoría ' + category.name" size="small" />
           <Pagination :page="page" :total="total" :rpp="rpp" :url="category.url" />
           <!-- /row -->
         </div>
