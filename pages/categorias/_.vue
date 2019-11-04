@@ -1,7 +1,17 @@
 <template>
   <div>
     <div id="producto" :class="{ container: true, agotado: (product.stock === 0) }">
-  
+      
+      <p class="breadcrumb">
+        <router-link to="/">Inicio</router-link>
+        <span v-if="category">
+          <i>&gt;</i>
+          <router-link :to="category.url">{{ category.name }}</router-link>
+        </span>
+        <i>&gt;</i>
+        {{ product.name }}
+      </p>
+      
       <div class="row">    
         <div id="fotos" class="col-6">
           <div class="principal">
@@ -109,6 +119,7 @@
 
 <script>
 import Product from '~/components/gigantier/Product';
+import Category from '~/components/gigantier/Category';
 import User from '~/components/gigantier/User';
 import ProductList from '~/components/ProductList';
 import Cart from '~/components/Cart';
@@ -185,6 +196,7 @@ export default {
   },
   async asyncData(params) {
     let product = {};
+    let category = null;
     let related = [];
     
     try {
@@ -202,12 +214,21 @@ export default {
       console.error(err);
     }
     
+    try {
+      if (product.categories.length) {
+        category = await Category.getCategory(product.categories[0]);
+        category = category.data;
+      }
+    } catch (err) {
+      console.error(err);
+    }
+    
     let maxQuantity = product.stock;
     if (product.maxQuantity) {
       maxQuantity = product.maxQuantity;
     }
     
-    return { product: product, related: related, maxQuantity: maxQuantity };
+    return { product: product, related: related, maxQuantity: maxQuantity, category: category };
   },
   beforeRouteUpdate(to, from, next) {
     this.load(to.params.id);
