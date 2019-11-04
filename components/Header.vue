@@ -24,10 +24,9 @@
                 <span><router-link :to="cat.url">{{ cat.name }}</router-link></span>
               </li>
               <li v-if="user.logged">
-                <span><router-link to="/micuenta">Hola {{ user.name() }}</router-link></span>
+                <span><a href="#">Hola {{ user.name() }}</a></span>
                 <ul>
-                  <li><span><router-link to="/favoritos">Favoritos</router-link></span></li>
-                  <li><span><router-link to="/logout">Cerrar sesión</router-link></span></li>
+                  <li><span><a href="#" @click="user.logout()">Cerrar sesión</a></span></li>
                 </ul>
               </li>
               <li v-if="!user.logged"><span><router-link to="/login">Login</router-link></span></li>
