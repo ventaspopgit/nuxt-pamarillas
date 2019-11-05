@@ -109,7 +109,10 @@
   
         <h2 class="tit-3">También te puede interesar</h2>
         
-        <ProductList :products="related" :list-name="'Relacionados ' + product.name" :type="0" size="small" />
+        <ProductList :products="related" :list-name="'Relacionados ' + product.name" :type="0" size="smallest" />
+        <div class="buttons">
+          <button v-if="allRelated.length > relatedPage*relatedRPP" type="button" class="btn btn_2" @click="nextRelatedPage()">Ver más</button>
+        </div>
         
       </div>
   
@@ -144,7 +147,10 @@ export default {
     visible: 'desc',
     today: new Date(),
     facebookShare: null,
-    twitterShare: null
+    twitterShare: null,
+    allRelated: [],
+    relatedPage: 1,
+    relatedRPP: 8
   }),
   head() {
     return {
@@ -198,6 +204,7 @@ export default {
     let product = {};
     let category = null;
     let related = [];
+    let allRelated = [];
     
     try {
       product = await Product.getProduct(params.params.id);
@@ -209,7 +216,8 @@ export default {
     
     try {
       related = await Product.getRelated(params.params.id);
-      related = related.data.products.slice(0, 4);
+      allRelated = related.data.products;
+      related = allRelated.slice(0, 8);
     } catch (err) {
       console.error(err);
     }
@@ -228,7 +236,7 @@ export default {
       maxQuantity = product.maxQuantity;
     }
     
-    return { product: product, related: related, maxQuantity: maxQuantity, category: category };
+    return { product: product, related: related, maxQuantity: maxQuantity, category: category, allRelated: allRelated };
   },
   beforeRouteUpdate(to, from, next) {
     this.load(to.params.id);
@@ -302,7 +310,8 @@ export default {
       
       try {
         related = await Product.getRelated(id);
-        this.related = related.data.products.slice(0, 4);
+        this.allRelated = related.data.products;
+        this.related = this.allRelated.slice(0, this.relatedRPP);
       } catch (error) {
         console.error(error);
       }
@@ -354,6 +363,10 @@ export default {
     twitter(event) {
       const link = event.target.closest('a');
       window.open(link.href, '', 'width=600,height=500');
+    },
+    nextRelatedPage() {
+      this.relatedPage++;
+      this.related = this.allRelated.slice(0, this.relatedRPP * this.relatedPage);
     }
   }
 };

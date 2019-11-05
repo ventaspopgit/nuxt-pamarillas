@@ -1,7 +1,7 @@
 <template>
   <div :class="{ row: (type === 0) }">
     <!-- GRID -->
-    <div v-for="(product, index) in products" v-if="type === 0" :key="index" :data-id="product.id" itemscope itemtype="http://schema.org/Product" :data-manufacturer="product.manufacturer" :class="{ 'col-md-6': (size === 'large'), 'col-md-4': (size === 'small') }">
+    <div v-for="(product, index) in products" v-if="type === 0" :key="index" :data-id="product.id" itemscope itemtype="http://schema.org/Product" :data-manufacturer="product.manufacturer" :class="{ 'col-md-6': (size === 'large'), 'col-md-4': (size === 'small'), 'col-md-3': (size === 'smallest') }">
       <div class="strip grid">
         <figure>
           <p v-if="product.discount" class="discount">-{{ product.discount }}%</p>
