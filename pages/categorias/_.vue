@@ -109,7 +109,7 @@
   
         <h2 class="tit-3">También te puede interesar</h2>
         
-        <ProductList :products="related" :list-name="'Relacionados ' + product.name" :type="0" size="smallest" />
+        <ProductList :products="related" :list-name="'Relacionados ' + product.name" :type="0" size="small" />
         <div class="buttons">
           <button v-if="allRelated.length > relatedPage*relatedRPP" type="button" class="btn btn_2" @click="nextRelatedPage()">Ver más</button>
         </div>
@@ -150,7 +150,7 @@ export default {
     twitterShare: null,
     allRelated: [],
     relatedPage: 1,
-    relatedRPP: 8
+    relatedRPP: 6
   }),
   head() {
     return {
@@ -217,7 +217,7 @@ export default {
     try {
       related = await Product.getRelated(params.params.id);
       allRelated = related.data.products;
-      related = allRelated.slice(0, 8);
+      related = allRelated.slice(0, 6);
     } catch (err) {
       console.error(err);
     }
