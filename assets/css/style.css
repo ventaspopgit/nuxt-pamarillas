@@ -59,7 +59,7 @@ Author URI: http://themeforest.net/user/Ansonika/
     position: relative;
     z-index: 9;
     width: auto;
-    top: 8px;
+    top: 14px;
     right: 15px;
     float: right;
     -moz-transition: all 0.3s ease-in-out;
@@ -89,7 +89,7 @@ Author URI: http://themeforest.net/user/Ansonika/
   /*First level styles */
   .main-menu > ul > li span > a {
     color: #fff;
-    padding: 0 8px 15px 8px;
+    padding: 0 8px 0 8px;
     font-size: 14px;
     font-size: 0.875rem;
     font-weight: 500;

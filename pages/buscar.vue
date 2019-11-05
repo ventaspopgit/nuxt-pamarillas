@@ -59,8 +59,8 @@
         <div class="col-lg-9">
           <p v-if="products.length === 0">No se encontraron resultados.</p>
           
-          <ProductList :products="products" :type="type" :list-name="'Categoría ' + category.name" size="small" />
-          <Pagination :page="page" :total="total" :rpp="rpp" :url="category.url" />
+          <ProductList :products="products" :type="type" :list-name="'Buscar ' + query" size="small" />
+          <Pagination :page="page" :total="total" :rpp="rpp" :url="'/buscar?query=' + query" />
           <!-- /row -->
         </div>
         <!-- /col -->
@@ -71,7 +71,6 @@
 </template>
 
 <script>
-import Category from '~/components/gigantier/Category';
 import Product from '~/components/gigantier/Product';
 import ProductList from '~/components/ProductList.vue';
 import Pagination from '~/components/Pagination.vue';
@@ -79,17 +78,13 @@ import Pagination from '~/components/Pagination.vue';
 const rpp = 12;
 
 export default {
-  name: 'Category',
+  name: 'Search',
   middleware: 'param-slug',
-  validate({ params }) {
-    return !isNaN(params.id);
-  },
   components: {
     ProductList, Pagination
   },
   data: () => ({
-    categories: [],
-    subcategories: [],
+    query: null,
     products: [],
     manufacturers: [],
     attributes: [],
@@ -103,44 +98,17 @@ export default {
     type: 0,
 
     sort: 'created',
-    category: {},
     attributesFilters: {},
     categoriesFilters: [],
     manufacturersFilters: []
   }),
-  computed: {
-    childCategory() {
-      return (this.category.parentId > 0);
-    }
-  },
   watch: {
-    category() {
-      this.loadProducts();
-    },
     sort() {
       this.loadProducts();
     },
     attributesFilters() {
       this.loadProducts();
     }
-  },
-  head() {
-    return {
-      titleTemplate: this.category.name + ' - %s',
-      meta: [
-        { hid: 'description', name: 'description', content: this.category.metaDesc },
-        { hid: 'keywords', name: 'keywords', content: this.category.metaKeys },
-        
-        { hid: 'item-name', itemprop: 'name', content: this.category.name },
-        { hid: 'item-description', itemprop: 'description', content: this.category.metaDesc },
-
-        { hid: 'og-title', property: 'og:title', content: this.category.name },
-        { hid: 'og-description', property: 'og:description', content: this.category.metaDesc },
-
-        { hid: 'twitter-title', property: 'twitter:title', content: this.category.name },
-        { hid: 'twitter-description', property: 'twitter:description', content: this.category.metaDesc }
-      ]
-    };
   },
   async asyncData(params) {
     let page = 1;
@@ -149,18 +117,9 @@ export default {
       page = parseInt(params.query.page);
     }
     
-    const categoryId = params.params.id;
-    let category;
-    
-    try {
-      category = await Category.getCategory(categoryId);
-    } catch (err) {
-      params.error({ statusCode: 404 });
-      return false;
-    }
+    const query = params.query.query;
     
     let prods = [];
-    let subcategories = [];
     let attributes = [];
     let manufacturers = [];
     let total = 0;
@@ -168,7 +127,7 @@ export default {
     let maxPrice = 0;
     
     try {
-      prods = await Product.get({ categoryId: categoryId, offset: (page - 1) * rpp, limit: rpp });
+      prods = await Product.get({ query: query, offset: (page - 1) * rpp, limit: rpp });
       
       attributes = prods.data.attributes;
       manufacturers = prods.data.manufacturers;
@@ -180,16 +139,8 @@ export default {
       console.error(error);
     }
     
-    try {
-      subcategories = await Category.get({ parentId: categoryId });
-      subcategories = subcategories.data;
-    } catch (error) {
-      console.error(error);        
-    }
-
     return {
-      category: category.data,
-      subcategories: subcategories,
+      query: query,
       products: prods,
       attributes: attributes,
       manufacturers: manufacturers,
@@ -202,8 +153,6 @@ export default {
     };
   },
   created() {
-    this.categories = this.$store.state.categories;
-    
     this.attributes = this.attributes.map((a) => {
       a.values = Product.sortAttributes(a.values);
       return a;
@@ -237,25 +186,15 @@ export default {
       this.page = parseInt(to.query.page);
     }
 
-    this.load(to.params.id);
+    this.loadProducts();
     next();
   },
   methods: {
-    async load(id) {
-      if (parseInt(this.category.id) !== parseInt(id)) {
-        this.attributesFilters = {};
-
-        const category = await Category.getCategory(id);
-        this.category = category.data;
-      } else {
-        this.loadProducts();
-      }
-    },
     async loadProducts() {
       this.$nuxt.$loading.start();
       
       const params = {
-        categoryId: parseInt(this.category.id),
+        query: this.query,
         sort: this.sort,
         filters: JSON.stringify(this.categoriesFilters),
         attributes: this.attributesFilters,

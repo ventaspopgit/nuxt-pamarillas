@@ -2,14 +2,17 @@
   <header class="header_in">
     <div class="container">
       <div class="row">
-        <div class="col-lg-3 col-12">
+        <div class="col-lg col-sm-12" style="flex-grow:0">
           <div id="logo">
             <router-link to="/">
               <img src="~assets/img/buscoshop.jpg" height="50" alt="" class="logo_sticky">
             </router-link>
           </div>
         </div>
-        <div class="col-lg-9 col-12">
+        <form action="/buscar" method="get" class="search col-lg">
+          <input type="text" placeholder="Buscar..." name="query">
+        </form>
+        <div class="col-lg col-sm-12">
           <!-- /top_menu -->
           <a href="#menu" class="btn_mobile">
             <div id="hamburger" class="hamburger hamburger--spin">

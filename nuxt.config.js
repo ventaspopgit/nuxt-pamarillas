@@ -66,7 +66,7 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     ['@nuxtjs/google-tag-manager', {
-      id: 'GTM-MG97NG9'
+      id: ''
     }]
   ],
   /*

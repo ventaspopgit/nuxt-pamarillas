@@ -92,3 +92,14 @@ a.tel {
   .strip.list_view figure a img {
     height: 200px;
   }
+  
+.header_in .search {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+  
+  .header_in .search input {
+    width: 100%;
+    padding: 5px 10px;
+  }
