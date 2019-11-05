@@ -4,7 +4,7 @@
     <div v-for="(product, index) in products" v-if="type === 0" :key="index" :data-id="product.id" itemscope itemtype="http://schema.org/Product" :data-manufacturer="product.manufacturer" :class="{ 'col-md-6': (size === 'large'), 'col-md-4': (size === 'small'), 'col-md-3': (size === 'smallest') }">
       <div class="strip grid">
         <figure>
-          <p v-if="product.discount" class="discount">-{{ product.discount }}%</p>
+          <small v-if="product.discount" class="discount">-{{ product.discount }}%</small>
           <router-link v-if="product.image" :to="product.url" event="" @click.native.prevent="visit(product, index)">
             <img :src="product.image" class="img-fluid" alt="">
           </router-link>
@@ -12,7 +12,10 @@
         <div class="wrapper">
           <h3><router-link :to="product.url" event="" @click.native.prevent="visit(product, index)">{{ product.name }}</router-link></h3>
           <small>{{ product.code }}</small>
-          <p>{{ $price(product.price) }}</p>
+          <p class="price">
+            {{ $price(product.price) }}
+            <s v-if="product.originalPrice && product.originalPrice > product.price">{{ $price(product.originalPrice) }}</s>
+          </p>
         </div>
       </div>
     </div>
@@ -21,7 +24,7 @@
       <div class="row no-gutters">
         <div class="col" style="flex-shrink:1;flex-grow:0">
           <figure>
-            <p v-if="product.discount" class="discount">-{{ product.discount }}%</p>
+            <small v-if="product.discount" class="discount">-{{ product.discount }}%</small>
             <router-link v-if="product.image" :to="product.url" event="" @click.native.prevent="visit(product, index)">
               <img :src="product.image" class="img-fluid" alt="">
             </router-link>
@@ -31,7 +34,10 @@
           <div class="wrapper">
             <h3><router-link :to="product.url" event="" @click.native.prevent="visit(product, index)">{{ product.name }}</router-link></h3>
             <small>{{ product.code }}</small>
-            <p>{{ $price(product.price) }}</p>
+            <p class="price">
+              {{ $price(product.price) }}
+              <s v-if="product.originalPrice && product.originalPrice > product.price">{{ $price(product.originalPrice) }}</s>
+            </p>
           </div>
         </div>
       </div>

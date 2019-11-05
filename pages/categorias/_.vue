@@ -105,18 +105,19 @@
         
       </div>
   
-      <div class="relacionados">
-  
-        <h2 class="tit-3">También te puede interesar</h2>
-        
-        <ProductList :products="related" :list-name="'Relacionados ' + product.name" :type="0" size="small" />
-        <div class="buttons">
-          <button v-if="allRelated.length > relatedPage*relatedRPP" type="button" class="btn btn_2" @click="nextRelatedPage()">Ver más</button>
-        </div>
-        
-      </div>
-  
     </div>
+    
+    <div class="container relacionados">
+
+      <h2 class="tit-3">También te puede interesar</h2>
+      
+      <ProductList :products="related" :list-name="'Relacionados ' + product.name" :type="0" size="small" />
+      <div class="buttons">
+        <button v-if="allRelated.length > relatedPage*relatedRPP" type="button" class="btn btn_2" @click="nextRelatedPage()">Ver más</button>
+      </div>
+      
+    </div>
+    
   </div>
 </template>
 

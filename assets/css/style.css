@@ -2938,6 +2938,7 @@ a.box_feat h3 {
   display: block;
   position: relative;
   margin-bottom: 30px;
+  height: calc(100% - 30px);
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
@@ -3093,6 +3094,13 @@ a.box_feat h3 {
 }
 .strip .wrapper p {
   margin-bottom: 15px;
+}
+.strip .wrapper .price {
+  font-size: 1.2em;
+}
+.strip .wrapper .price s {
+  color: #999;
+  margin-left: 1em;
 }
 .strip ul {
   padding: 20px 15px 17px 20px;

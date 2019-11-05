@@ -27,20 +27,9 @@
 	
 }
 
-.strip figure {
-  overflow: hidden;
-  .discount {
-    background-color: #004dda;
-    color: #FFF;
-    transform: rotate(45deg);
-    font-weight: bold;
-    text-align: center;
-    right: -5em;
-    position: absolute;
-    width: 16em;
-    top: 2em;
-    z-index: 99999;
-  }  
+.strip .discount {
+  font-size: 1em;
+  padding: 10px 12px;
 }
 
 #producto {
@@ -247,43 +236,7 @@
 		}
 		
 	}
-	
-	.relacionados {
-		
-		h2 {
-			margin-bottom: 1.5em;
-
-			@media (min-width: 721px) {
-				text-align: center;
-			}
 			
-			+ p {
-  			text-align: center;
-  			font-weight: normal;
-  			color: var(--gray);
-  			max-width: 24em;
-  			margin: -1.5em auto 2em auto;
-  			line-height: 1.5em;
-			}
-		}
-		
-		+ .relacionados {
-  		margin-top: 10em;
-		}
-		
-		.buttons {
-  		text-align: center;
-  		margin-top: 5em;
-  		
-  		button {
-    		font-size: 1.5em;
-    		padding: 1em 2em;
-    		display: inline-block;
-  		}
-		}
-		
-	}
-		
 	.feats {
 		border-top: 1px solid var(--gray);
 		padding-top: 5em;
@@ -323,6 +276,43 @@
 		
 		#fotos ul {
 			display: none;
+		}
+	}
+	
+}
+
+.relacionados {
+	
+	h2 {
+		margin-bottom: 1.5em;
+		font-size: 2em;
+
+		@media (min-width: 721px) {
+			text-align: center;
+		}
+		
+		+ p {
+			text-align: center;
+			font-weight: normal;
+			color: var(--gray);
+			max-width: 24em;
+			margin: -1.5em auto 2em auto;
+			line-height: 1.5em;
+		}
+	}
+	
+	+ .relacionados {
+		margin-top: 10em;
+	}
+	
+	.buttons {
+		text-align: center;
+		margin-top: 5em;
+		
+		button {
+  		font-size: 1.5em;
+  		padding: 1em 2em;
+  		display: inline-block;
 		}
 	}
 	

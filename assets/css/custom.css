@@ -82,3 +82,13 @@ a.tel {
 .strip figure a:hover img {
   transform: scale(1.1);
 }
+
+.strip.list_view figure,
+.strip.list_view .wrapper,
+.strip.list_view {
+  min-height: 0;
+}
+
+  .strip.list_view figure a img {
+    height: 200px;
+  }
