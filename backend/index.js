@@ -567,7 +567,7 @@ app.post('/PayUTarjeta', function(req, res) {
 });
 
 app.post('/PayUTarjeta/pay', function(req, res) {
-  apiClient.authenticatedCall('/PayUTarjeta/pay', { body: req.body }).then((data) => {
+  apiClient.call('/PayUTarjeta/pay', { body: req.body }).then((data) => {
     res.json(data);
   }).catch((data) => {
     res.status(400).json(data);
@@ -607,7 +607,7 @@ app.delete('/PayUTarjeta/cards/:id', function(req, res) {
 });
 
 app.post('/PayUPSE/pay', function(req, res) {
-  apiClient.authenticatedCall('/PayUPSE/pay', { body: req.body }).then((data) => {
+  apiClient.call('/PayUPSE/pay', { body: req.body }).then((data) => {
     res.json(data);
   }).catch((data) => {
     res.status(400).json(data);
@@ -639,7 +639,7 @@ app.get('/PayUPSE/personTypes', cache(CACHE_TIME), function(req, res) {
 });
 
 app.post('/PayUEfecty/pay', function(req, res) {
-  apiClient.authenticatedCall('/PayUEfecty/pay', { body: req.body }).then((data) => {
+  apiClient.call('/PayUEfecty/pay', { body: req.body }).then((data) => {
     res.json(data);
   }).catch((data) => {
     res.status(400).json(data);
@@ -647,7 +647,7 @@ app.post('/PayUEfecty/pay', function(req, res) {
 });
 
 app.post('/PayUBaloto/pay', function(req, res) {
-  apiClient.authenticatedCall('/PayUBaloto/pay', { body: req.body }).then((data) => {
+  apiClient.call('/PayUBaloto/pay', { body: req.body }).then((data) => {
     res.json(data);
   }).catch((data) => {
     res.status(400).json(data);
@@ -655,7 +655,7 @@ app.post('/PayUBaloto/pay', function(req, res) {
 });
 
 app.post('/PuntoRed/pay', function(req, res) {
-  apiClient.authenticatedCall('/PuntoRed/pay', { body: req.body }).then((data) => {
+  apiClient.call('/PuntoRed/pay', { body: req.body }).then((data) => {
     res.json(data);
   }).catch((data) => {
     res.status(400).json(data);
@@ -671,7 +671,7 @@ app.get('/MercadoPagoCreditCard/paymentMethods', cache(CACHE_TIME), function(req
 });
 
 app.post('/MercadoPagoCreditCard/pay', function(req, res) {
-  apiClient.authenticatedCall('/MercadoPagoCreditCard/pay', { body: req.body }).then((data) => {
+  apiClient.call('/MercadoPagoCreditCard/pay', { body: req.body }).then((data) => {
     res.json(data);
   }).catch((data) => {
     res.status(400).json(data);

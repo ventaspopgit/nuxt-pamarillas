@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import VuexPersist from 'vuex-persist';
-import CartProduct from './gigantier/CartProduct.js';
+// import CartProduct from './gigantier/CartProduct.js';
 import User from './gigantier/User.js';
 
 const dummyStorageSSR = {
@@ -156,7 +156,7 @@ const Cart = new Vuex.Store({
       
       // Save remotely
       User.init();
-      if (User.logged) {
+      /* if (User.logged) {
         CartProduct.create({
           productId: payload.product.id,
           versionId: payload.versionId,
@@ -165,7 +165,7 @@ const Cart = new Vuex.Store({
         }).then((data) => {
           this.commit('setCartProductId', { productId: payload.product.id, versionId: payload.versionId, cartProductId: data.data._id });
         });
-      }
+      } */
     },
     
     setCartProductId(state, payload) {
@@ -228,7 +228,7 @@ const Cart = new Vuex.Store({
           }
         });
         
-        CartProduct.delete(this.state.products[index].cartProductId);
+        // CartProduct.delete(this.state.products[index].cartProductId);
       }  
       
       this.state.products.splice(index, 1);
@@ -252,9 +252,9 @@ const Cart = new Vuex.Store({
     },
     
     reset() {
-      this.state.products.map((product) => {
+      /* this.state.products.map((product) => {
         CartProduct.delete(product.cartProductId);
-      });
+      }); */
       
       this.state.products = [];
       this.state.discounts = [];
