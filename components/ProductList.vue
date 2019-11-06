@@ -4,7 +4,8 @@
     <div v-for="(product, index) in products" v-if="type === 0" :key="index" :data-id="product.id" itemscope itemtype="http://schema.org/Product" :data-manufacturer="product.manufacturer" :class="{ 'col-md-6': (size === 'large'), 'col-md-4': (size === 'small'), 'col-md-3': (size === 'smallest') }">
       <div class="strip grid">
         <figure>
-          <small v-if="product.discount" class="discount">-{{ product.discount }}%</small>
+          <small v-if="product.stock && product.discount" class="discount">-{{ product.discount }}%</small>
+          <small v-if="product.stock === 0" class="discount">AGOTADO</small>
           <router-link v-if="product.image" :to="product.url" event="" @click.native.prevent="visit(product, index)">
             <img :src="product.image" class="img-fluid" alt="">
           </router-link>
@@ -80,40 +81,44 @@ export default {
     this.user = User;
     this.user.init();
 
-    this.$gtm.pushEvent({
-      event: 'gtm.dom',
-      ecommerce: {
-        impressions: this.products.map((product, index) => {
-          return {
-            id: product.id,
-            name: product.name,
-            brand: product.manufacturer,
-            price: product.price,
-            position: index,
-            list: this.listName
-          };
-        })
-      }
-    });  
-  },
-  methods: {
-    visit(product, index) {
+    if (typeof this.$gtm !== 'undefined') {
       this.$gtm.pushEvent({
-        event: 'productClick',
+        event: 'gtm.dom',
         ecommerce: {
-          click: {
-            actionField: { list: this.listName },
-            products: [{
+          impressions: this.products.map((product, index) => {
+            return {
               id: product.id,
               name: product.name,
               brand: product.manufacturer,
               price: product.price,
               position: index,
               list: this.listName
-            }]
-          }
+            };
+          })
         }
-      });
+      });  
+    }
+  },
+  methods: {
+    visit(product, index) {
+      if (typeof this.$gtm !== 'undefined') {
+        this.$gtm.pushEvent({
+          event: 'productClick',
+          ecommerce: {
+            click: {
+              actionField: { list: this.listName },
+              products: [{
+                id: product.id,
+                name: product.name,
+                brand: product.manufacturer,
+                price: product.price,
+                position: index,
+                list: this.listName
+              }]
+            }
+          }
+        });
+      }
       this.$router.push(product.url);
     }
   }

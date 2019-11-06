@@ -163,24 +163,26 @@ export default {
     }
 
     // Google event
-    this.$gtm.pushEvent({
-      event: 'checkout',
-      ecommerce: {
-        checkout: {
-          actionField: { step: 1 },
-          products: this.products.map((product) => {
-            return {
-              id: product.id,
-              name: product.name,
-              price: product.price,
-              brand: product.manufacturer,
-              variant: product.versionId,
-              quantity: product.quantity
-            };
-          })
+    if (typeof this.$gtm !== 'undefined') {
+      this.$gtm.pushEvent({
+        event: 'checkout',
+        ecommerce: {
+          checkout: {
+            actionField: { step: 1 },
+            products: this.products.map((product) => {
+              return {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                brand: product.manufacturer,
+                variant: product.versionId,
+                quantity: product.quantity
+              };
+            })
+          }
         }
-      }
-    });    
+      });  
+    }  
   },
   methods: {
     moment(args) {

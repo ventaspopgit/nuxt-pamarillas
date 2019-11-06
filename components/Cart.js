@@ -138,21 +138,23 @@ const Cart = new Vuex.Store({
       }
       
       // Google event
-      window.$nuxt.$gtm.pushEvent({
-        event: 'addToCart',
-        ecommerce: {
-          add: {
-            products: [{
-              id: payload.product.id,
-              name: payload.product.name,
-              brand: payload.product.manufacturer,
-              quantity: payload.quantity,
-              variant: payload.versionId,
-              price: parseFloat(payload.product.price)
-            }]
+      if (typeof window.$nuxt.$gtm !== 'undefined') {
+        window.$nuxt.$gtm.pushEvent({
+          event: 'addToCart',
+          ecommerce: {
+            add: {
+              products: [{
+                id: payload.product.id,
+                name: payload.product.name,
+                brand: payload.product.manufacturer,
+                quantity: payload.quantity,
+                variant: payload.versionId,
+                price: parseFloat(payload.product.price)
+              }]
+            }
           }
-        }
-      });
+        });
+      }
       
       // Save remotely
       User.init();
@@ -212,21 +214,23 @@ const Cart = new Vuex.Store({
       if (this.state.products[index].cartProductId) {
         const product = this.state.products[index];
         
-        window.$nuxt.$gtm.pushEvent({
-          event: 'removeFromCart',
-          ecommerce: {
-            remove: {
-              products: [{
-                id: product.id,
-                name: product.name,
-                brand: product.manufacturer,
-                quantity: product.quantity,
-                variant: product.versionId,
-                price: parseFloat(product.price)
-              }]
+        if (typeof window.$nuxt.$gtm !== 'undefined') {
+          window.$nuxt.$gtm.pushEvent({
+            event: 'removeFromCart',
+            ecommerce: {
+              remove: {
+                products: [{
+                  id: product.id,
+                  name: product.name,
+                  brand: product.manufacturer,
+                  quantity: product.quantity,
+                  variant: product.versionId,
+                  price: parseFloat(product.price)
+                }]
+              }
             }
-          }
-        });
+          });
+        }
         
         // CartProduct.delete(this.state.products[index].cartProductId);
       }  

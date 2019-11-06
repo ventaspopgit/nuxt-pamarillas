@@ -283,19 +283,21 @@ export default {
     }
     
     // Google event
-    this.$gtm.pushEvent({
-      event: 'gtm.dom',
-      ecommerce: {
-        detail: {
-          products: [{
-            id: this.product.id,
-            name: this.product.name,
-            brand: this.product.manufacturer,
-            price: this.product.price
-          }]
+    if (typeof this.$gtm !== 'undefined') {
+      this.$gtm.pushEvent({
+        event: 'gtm.dom',
+        ecommerce: {
+          detail: {
+            products: [{
+              id: this.product.id,
+              name: this.product.name,
+              brand: this.product.manufacturer,
+              price: this.product.price
+            }]
+          }
         }
-      }
-    });
+      });
+    }
   },
   methods: {
     async load(id) {
