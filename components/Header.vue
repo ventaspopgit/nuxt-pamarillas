@@ -11,10 +11,33 @@
         </div>
         <form action="/buscar" method="get" class="search col-lg">
           <input type="text" placeholder="Buscar..." name="query" class="form-control">
-          <button type="submit"></button>
+          <button type="submit" />
         </form>
         <div class="col-lg col-sm-12">
-          <!-- /top_menu -->
+          <ul v-if="cartProducts.length" id="top_menu">
+            <li>
+              <router-link to="/carrito" class="wishlist_bt_top" title="Tu carrito">Tu carrito</router-link>
+            
+              <router-link to="/carrito" class="desplegable productos">
+                <div v-for="(product, index) in cartProducts" :key="index" class="producto">
+                  <div class="imagen">
+                    <img :src="product.image" alt="">
+                  </div>
+                  <div class="info">
+                    <p class="tit-5">{{ product.name }}</p>
+                    <p class="precio">
+                      {{ $price(product.price * product.quantity) }}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="subtotal">
+                  <p>Subtotal</p>
+                  <strong>{{ $price(cartTotal) }}</strong>
+                </div>
+              </router-link>
+            </li>
+          </ul>
           <a href="#menu" class="btn_mobile">
             <div id="hamburger" class="hamburger hamburger--spin">
               <div class="hamburger-box">

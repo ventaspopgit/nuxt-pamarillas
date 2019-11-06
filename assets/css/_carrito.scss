@@ -1172,3 +1172,116 @@
 	}
 
 }
+
+#top_menu li:hover .desplegable {
+  display: block;
+}
+
+.desplegable {
+	background-color: #FFF;
+	border-radius: 0.5em;
+	padding: 0 2em 2em 2em;
+	position: absolute;
+	z-index: 9999;
+	margin-top: 1.5em;
+	right: 0;
+	font-size: 0.7em;
+	display: none;
+	opacity: 1 !important;
+	box-shadow: 0 0 0.5em rgba(0,0,0,0.2);
+	
+	p {
+  	margin: 0;
+	}
+
+	.producto {
+		border-bottom: 1px solid var(--grey);
+		padding: 2em 0;
+		display: flex;
+		align-items: flex-start;
+		
+		.imagen {
+			width: 8em;
+			border-radius: 1em;
+			margin-right: 2em;
+			overflow: hidden;
+			flex-grow: 0;
+			flex-shrink: 0;
+			
+			img {
+				width: 8em;
+				height: 8em;
+				object-fit: cover;
+			}
+		}
+		
+		.precio {
+			font-size: 1.8em;
+			font-weight: bold;
+			color: var(--red);
+			margin-top: 0.5em;
+			
+			.descuento {
+				font-size: 0.6em;
+				margin-right: 0.5em;
+			}
+			
+			s {
+				font-weight: normal;
+				color: var(--grey);
+				margin-left: 0.5em;
+				font-size: 1em;
+				vertical-align: baseline;
+			}
+		}
+		
+		.tit-5 {
+			line-height: 1.4em;
+		}
+	}
+	
+	.subtotal {
+		padding: 2em 0 0 0;
+		display: flex;
+		justify-content: space-between;
+		
+		&.envios {
+			border: 0 none
+		}
+		
+		p, strong {
+			font-size: 1.8em;
+		}
+		
+		strong {
+			margin-left: 2em;
+		}
+		
+		&.total {
+			margin-top: 2em;
+			
+			p, strong {
+				font-size: 3em;
+			}
+		}
+	}
+	
+	&.productos {
+		a {
+			color: var(--red);
+			text-transform: uppercase;
+			font-size: 1.2em;
+			font-weight: bold;
+			text-align: right;
+			display: block;
+			margin-top: 1em;
+			
+			&:first-child {
+				float: right;
+				margin: 0;
+				font-size: 1.4em;
+			}
+		}
+	}
+	
+}

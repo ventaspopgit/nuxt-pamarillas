@@ -128,3 +128,12 @@ a.tel {
     background: #ffc107 url(~assets/img/search.svg) no-repeat center center;
     width: 50px;
   }
+  
+ul#top_menu li a.login, ul#top_menu li a.wishlist_bt_top {
+  top: 14px;
+}
+
+  ul#top_menu li a.login, ul#top_menu li a.wishlist_bt_top:before {
+    content: "\e015";
+    font-family: ElegantIcons;
+  }
