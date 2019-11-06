@@ -10,7 +10,8 @@
           </div>
         </div>
         <form action="/buscar" method="get" class="search col-lg">
-          <input type="text" placeholder="Buscar..." name="query">
+          <input type="text" placeholder="Buscar..." name="query" class="form-control">
+          <button type="submit"></button>
         </form>
         <div class="col-lg col-sm-12">
           <!-- /top_menu -->

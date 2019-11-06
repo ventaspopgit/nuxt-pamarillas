@@ -101,11 +101,30 @@ a.tel {
   
 .header_in .search {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
 }
+  
+  .header_in .search input,
+  .header_in .search button {
+    height: 3em;
+  }
   
   .header_in .search input {
     width: 100%;
-    padding: 5px 10px;
+    border-right: 0 none;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  .header_in .search button {
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+    border-radius: 0 3px 3px 0;
+    text-indent: -999px;
+    background: #ffc107 url(~assets/img/search.svg) no-repeat center center;
+    width: 50px;
   }
