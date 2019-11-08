@@ -6,8 +6,9 @@
         <figure>
           <small v-if="product.stock && product.discount" class="discount">-{{ product.discount }}%</small>
           <small v-if="product.stock === 0" class="discount">AGOTADO</small>
-          <router-link v-if="product.image" :to="product.url" event="" @click.native.prevent="visit(product, index)">
-            <img :src="product.image" class="img-fluid" alt="">
+          <router-link :to="product.url" event="" @click.native.prevent="visit(product, index)">
+            <div :class="{ placeholder: true, pulse: (product.image != '') }" />
+            <img v-if="product.image" :src="product.image" class="img-fluid" alt="">
           </router-link>
         </figure>
         <div class="wrapper">
