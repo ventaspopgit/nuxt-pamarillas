@@ -1189,6 +1189,9 @@
 	display: none;
 	opacity: 1 !important;
 	box-shadow: 0 0 0.5em rgba(0,0,0,0.2);
+	min-width: 38em;
+	max-width: 100%;
+	box-sizing: border-box;
 	
 	p {
   	margin: 0;
@@ -1282,6 +1285,13 @@
 				font-size: 1.4em;
 			}
 		}
+	
+  	.btn_1 {
+    	color: #FFF !important;
+    	text-align: center;
+    	text-transform: none;
+    	font-size: 1.5em;
+  	}
 	}
 	
 }

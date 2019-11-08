@@ -131,9 +131,25 @@ a.tel {
   
 ul#top_menu li a.login, ul#top_menu li a.wishlist_bt_top {
   top: 14px;
+  overflow: visible;
 }
 
   ul#top_menu li a.login, ul#top_menu li a.wishlist_bt_top:before {
     content: "\e015";
     font-family: ElegantIcons;
   }
+  
+ul#top_menu span.n {
+  text-indent: 0;
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  width: 15px;
+  height: 15px;
+  line-height: 170%;
+  text-align: center;
+  background-color: #004dda;
+  border-radius: 100%;
+  color: #FFF;
+  font-size: 9px;
+}

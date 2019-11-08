@@ -16,7 +16,10 @@
         <div class="col-lg col-sm-12">
           <ul v-if="cartProducts.length" id="top_menu">
             <li>
-              <router-link to="/carrito" class="wishlist_bt_top" title="Tu carrito">Tu carrito</router-link>
+              <router-link to="/carrito" class="wishlist_bt_top" title="Tu carrito">
+                Tu carrito
+                <span class="n">{{ cartProducts.length }}</span>
+              </router-link>
             
               <router-link to="/carrito" class="desplegable productos">
                 <div v-for="(product, index) in cartProducts" :key="index" class="producto">
@@ -35,6 +38,8 @@
                   <p>Subtotal</p>
                   <strong>{{ $price(cartTotal) }}</strong>
                 </div>
+                
+                <router-link to="/carrito" class="btn btn_1">Finalizar compra</router-link>
               </router-link>
             </li>
           </ul>
