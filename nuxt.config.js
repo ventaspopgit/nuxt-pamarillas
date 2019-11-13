@@ -35,7 +35,8 @@ module.exports = {
     ],
     script: [
       { src: '//cdn.segmentify.com/ad152cd3-31d4-4e09-b219-eb32d8dcf627/segmentify.js' },
-      { src: '/js/smartbanner/smartbanner.min.js' }
+      { src: '/js/smartbanner/smartbanner.min.js' },
+      { src: 'https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js' }
     ]
   },
 

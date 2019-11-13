@@ -3,6 +3,9 @@
     <Heading :shop="shop" :categories="categories" />
     <main id="main">
       <nuxt />
+      <a id="scrollTop" @click.prevent="scrollTop()">
+        <i class="icon-up-open-big" />
+      </a>
     </main>
     <Foot :shop="shop" :pages="pages" />
     <Error :message="errorMessage" :visible="errorVisible" />
@@ -98,6 +101,12 @@ export default {
     }
     
     Cart.commit('checkProducts');
+  },
+  methods: {
+    scrollTop() {
+      const scroll = new SmoothScroll('#scrollTop');
+      scroll.animateScroll(document.getElementById('page'));
+    }
   }
 };
 </script>

@@ -1,6 +1,23 @@
 /*============================================================================================*/
 /* Your custom styles below */
 /*============================================================================================*/
+#scrollTop {
+  position: fixed;
+  bottom: 1em;
+  right: 1em;
+  width: 2em;
+  height: 2em;
+  background-color: #004dda;
+  color: #FFF;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 1.9em;
+  font-size: 1.4em;
+  cursor: pointer;
+  box-shadow: 0 0 0.5em rgba(0,0,0,0.4);
+  display: block;
+}
+
 .filters_listing {
 	padding: 10px 0;
 }

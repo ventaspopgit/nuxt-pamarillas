@@ -26,6 +26,7 @@ module.exports = {
     "jQuery": true,
     "fbq": true,
     "gtag": true,
-    "ga": true
+    "ga": true,
+    "SmoothScroll": true
   }
 }
