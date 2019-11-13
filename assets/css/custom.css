@@ -137,6 +137,7 @@ a.tel {
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: relative;
 }
   
   .header_in .search input,
@@ -148,6 +149,10 @@ a.tel {
     width: 100%;
     border-right: 0 none;
     border-radius: 3px 0 0 3px;
+  }
+  
+  .header_in .search input:focus {
+    box-shadow: none;
   }
   
   .header_in .search button {
@@ -162,6 +167,35 @@ a.tel {
     background: #ffc107 url(~assets/img/search.svg) no-repeat center center;
     width: 50px;
   }
+  
+		.sugerencias {
+  		opacity: 0;
+  		transition: opacity 0.5s;
+      position: absolute;
+      background-color: #FFF;
+      border-radius: 3px;
+      box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+      width: 100%;
+      right: 0;
+      top: 4em;
+      overflow: hidden;
+      z-index: 99999;
+    }
+    
+    .sugerencias a {
+      font-size: 1em;
+      display: block;
+      padding: 1em;
+      color: inherit;
+    }
+      
+    .sugerencias a:hover {
+      background-color: var(--light-grey);
+    }
+      
+		.sugerir .sugerencias {
+			opacity: 1;
+		}  
   
 ul#top_menu li a.login, ul#top_menu li a.wishlist_bt_top {
   top: 14px;

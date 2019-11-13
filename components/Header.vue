@@ -9,9 +9,14 @@
             </router-link>
           </div>
         </div>
-        <form action="/buscar" method="get" class="search col-lg">
-          <input type="text" placeholder="Buscar..." name="query" class="form-control">
+        <form action="/buscar" method="get" class="search col-lg" :class="{ sugerir: sugerenciasAbiertas }">
+          <input v-model="query" type="text" placeholder="Buscar..." name="query" class="form-control" autocomplete="off" @keyup="sugerir()" @focus="sugerenciasAbiertas = true" @blur="sugerenciasAbiertas = false">
           <button type="submit" />
+          <ul class="sugerencias">
+            <li v-for="(sugerencia, index) in sugerencias" :key="index">
+              <router-link :to="url(sugerencia)">{{ sugerencia.name }}</router-link>
+            </li>
+          </ul>          
         </form>
         <div class="col-lg col-sm-12">
           <ul v-if="cartProducts.length" id="top_menu">
@@ -74,6 +79,8 @@
 
 <script>
 import User from '~/components/gigantier/User';
+import Search from '~/components/gigantier/Search';
+import Product from '~/components/gigantier/Product';
 import Cart from '~/components/Cart';
 
 export default {
@@ -114,6 +121,27 @@ export default {
   created() {
     this.user = User;
     this.user.init();
+  },
+  methods: {
+    sugerir() {
+      if (this.query.trim().length >= 3) {
+        if (this.timeout) {
+          clearTimeout(this.timeout);
+        }
+        
+        this.timeout = setTimeout(this.cargarSugerencias, 500);
+      } else {
+        this.sugerencias = [];
+      }
+    },
+    cargarSugerencias() {
+      Search.query(this.query).then((res) => {
+        this.sugerencias = res.data.products;
+      });
+    },
+    url(producto) {
+      return Product.url(producto);
+    }    
   }
 };
 </script>
