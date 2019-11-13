@@ -26,10 +26,12 @@
     
     <div class="container margin_60_35">
       <div class="row">
-        <aside id="sidebar" class="col-lg-3">
+        <a v-if="!filters" href="#" id="show_filters" @click.prevent="filters = true">Ver filtros</a>
+        
+        <aside v-if="filters" id="sidebar" class="col-lg-3">
           <form id="buscar" action="" method="get">
             <div id="filters_col">
-              <a id="filters_col_bt" data-toggle="collapse" href="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">Filtros </a>
+              <a id="filters_col_bt" data-toggle="collapse" aria-expanded="false" aria-controls="collapseFilters" href="#" @click.prevent="filters = false">Filtros </a>
               <div id="collapseFilters" class="collapse show">
                 <div class="filter_type">
                   
@@ -56,7 +58,7 @@
         </aside>
         <!-- /aside -->
 
-        <div class="col-lg-9">
+        <div :class="{ 'col-lg-9': filters, 'col-lg-12': !filters }">
           <p v-if="products.length === 0">No se encontraron resultados.</p>
           
           <ProductList :products="products" :type="type" :list-name="'Categoría ' + category.name" size="small" />
@@ -106,7 +108,8 @@ export default {
     category: {},
     attributesFilters: {},
     categoriesFilters: [],
-    manufacturersFilters: []
+    manufacturersFilters: [],
+    filters: false
   }),
   computed: {
     childCategory() {

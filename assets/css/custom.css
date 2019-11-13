@@ -180,6 +180,7 @@ a.tel {
       top: 4em;
       overflow: hidden;
       z-index: 99999;
+      pointer-events: none;
     }
     
     .sugerencias a {
@@ -195,6 +196,7 @@ a.tel {
       
 		.sugerir .sugerencias {
 			opacity: 1;
+      pointer-events: auto;			
 		}  
   
 ul#top_menu li a.login, ul#top_menu li a.wishlist_bt_top {
@@ -221,3 +223,30 @@ ul#top_menu span.n {
   color: #FFF;
   font-size: 9px;
 }
+
+#show_filters {
+  position: fixed;
+  left: -37px;
+  transform: rotate(-90deg);
+  background-color: #FFF;
+  padding: 10px 10px 5px 10px;
+  font-size: 12px;
+  border: 1px solid #ededed;
+  border-top: 0 none;
+  color: inherit;
+  transition: all 0.2s;
+  box-shadow: 0 0 0.4em rgba(0,0,0,0.05);
+}
+
+  #show_filters:hover {
+    left: -32px;
+    box-shadow: 0 0 0.4em rgba(0,0,0,0.1);
+  }
+
+  #show_filters:before {
+    font-family: "ElegantIcons";
+    content: "\66";
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
