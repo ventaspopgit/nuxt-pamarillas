@@ -118,6 +118,7 @@
       
     </div>
     
+    <template v-html="atencionchat" />
   </div>
 </template>
 
@@ -237,7 +238,34 @@ export default {
       maxQuantity = product.maxQuantity;
     }
     
-    return { product: product, related: related, maxQuantity: maxQuantity, category: category, allRelated: allRelated };
+    const atchatAttributes = {};
+    for (let i = 0; i < product.attributes.length; i++) {
+      atchatAttributes[product.attributes[i].id] = product.attributes[i].name;
+    }
+    
+    const atchatVersions = product.versions.map((v) => {
+      const atts = {};
+      for (let i = 0; i < v.attributes.length; i++) {
+        atts[v.attributes[i].id] = v.attributes[i].name;
+      }
+      
+      v.attributes = atts;
+      v.minPrice = v.price;
+      v.displayPrice = '$' + Number(Math.round(v.price)).toLocaleString('it');
+      v.displayOriginalPrice = '$' + Number(Math.round(v.originalPrice)).toLocaleString('it');
+      v.displayMinPrice = v.displayPrice;
+      v.displayDiscount = `${v.discount}%`;
+      return v;
+    });
+    
+    const atencionchat = `<script class="product">
+      /* META DATA ATENCIONCHAT */
+      var _IDPRODUCTO = ${product.id};
+      var _ATTRIBUTES = ${JSON.stringify(atchatAttributes)};
+      var _VERSIONS = ${JSON.stringify(atchatVersions)};
+    <\/script>`;
+
+    return { product: product, related: related, maxQuantity: maxQuantity, category: category, allRelated: allRelated, atencionchat: atencionchat };
   },
   beforeRouteUpdate(to, from, next) {
     this.load(to.params.id);
