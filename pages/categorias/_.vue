@@ -243,19 +243,21 @@ export default {
       atchatAttributes[product.attributes[i].id] = product.attributes[i].name;
     }
     
-    const atchatVersions = product.versions.map((v) => {
+    const atchatVersions = product.versions.slice(0).map((v) => {
       const atts = {};
       for (let i = 0; i < v.attributes.length; i++) {
         atts[v.attributes[i].id] = v.attributes[i].name;
       }
       
-      v.attributes = atts;
-      v.minPrice = v.price;
-      v.displayPrice = '$' + Number(Math.round(v.price)).toLocaleString('it');
-      v.displayOriginalPrice = '$' + Number(Math.round(v.originalPrice)).toLocaleString('it');
-      v.displayMinPrice = v.displayPrice;
-      v.displayDiscount = `${v.discount}%`;
-      return v;
+      // Clone version
+      const newV = { ...v };
+      newV.attributes = atts;
+      newV.minPrice = v.price;
+      newV.displayPrice = '$' + Number(Math.round(v.price)).toLocaleString('it');
+      newV.displayOriginalPrice = '$' + Number(Math.round(v.originalPrice)).toLocaleString('it');
+      newV.displayMinPrice = newV.displayPrice;
+      newV.displayDiscount = `${v.discount}%`;
+      return newV;      
     });
     
     const atencionchat = `<script class="product">
