@@ -19,7 +19,7 @@
     "@nuxtjs/axios": "^5.6.0",
     "@nuxtjs/google-tag-manager": "^2.3.0",
     "apicache": "^1.5.2",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "cross-env": "^5.2.1",
     "express": "^4.17.1",
     "fb": "^2.0.0",
