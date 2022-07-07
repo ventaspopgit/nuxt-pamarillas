@@ -24,7 +24,7 @@
     "express": "^4.17.1",
     "fb": "^2.0.0",
     "jquery": "^3.4.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "nouislider": "^13.1.5",
     "nuxt": "^2.9.2",
     "nuxt-healthcheck": "^1.0.1",
