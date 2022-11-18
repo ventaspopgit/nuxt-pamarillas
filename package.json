@@ -26,7 +26,7 @@
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "nouislider": "^13.1.5",
-    "nuxt": "^2.9.2",
+    "nuxt": "^2.15.8",
     "nuxt-healthcheck": "^1.0.1",
     "vue-slick": "^1.1.15",
     "vue-the-mask": "^0.11.1",
